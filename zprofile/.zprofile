@@ -32,6 +32,7 @@ _ZSUDO_FILE="$HOME/.zprotected"
 #   ----------------------------------
 
 alias ncu='ncu -x -u -i $@'
+alias rm='rm -i $@'
 alias save='source_reload_zsh'
 
 function zsudo() {
