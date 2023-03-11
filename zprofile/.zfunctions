@@ -1,0 +1,173 @@
+#!/bin/bash
+
+#   ----------------------------------
+#       SOURCE functions
+#   ----------------------------------
+
+function source_dir_symlinks() {
+  local _DIR="$1"
+  if [[ -d "$_DIR" && "$(ls -A "$_DIR")" ]]; then
+    # shellcheck disable=SC2066
+    for file in "$(ls -A "$_DIR")"; do
+      file="$_DIR/$file"
+      # shellcheck disable=SC1090
+      # shellcheck disable=SC2015
+      [[ -L "$file" && -e "$file" ]] && source "${file}" || rm -f "$file"
+    done
+  fi
+}
+
+function source_zsudo_passwordless() {
+  local _FILE="$1"
+  [ ! -f "$_FILE" ] && echo '_ZSUDO="    "' >"$_FILE"
+  # shellcheck disable=SC1090
+  source "$_FILE"
+}
+
+function source_reload_zsh() {
+  source "$HOME"/.zmessages
+  source "$HOME"/.zfunctions
+  source "$HOME"/.zprofile
+}
+
+#   ----------------------------------
+#       Automator functions
+#   ----------------------------------
+
+function automator() {
+  /usr/bin/automator ${1}
+}
+
+function automator_appearance() {
+  automator ~/Library/Services/Appearance_Switcher.workflow
+}
+
+#   ----------------------------------
+#       Alias symlink functions
+#   ----------------------------------
+
+# Alias symlink from _ALIASES_DIR
+function alias_symlink() {
+  # shellcheck disable=SC2155
+  local _ALIAS="$(pwd)/$2"
+  local _ALIASES_DIR="$1"
+  local _SOURCE="$_ALIASES_DIR/$1"
+  [ ! -d "$_ALIASES_DIR" ] && mkdir -p "$_ALIASES_DIR"
+  [ -z "$1" ] && error_arrow "\`{$1}\` - source not defined, try \`as {file|folder}\` from current directory" && return
+  [[ ! -d "$_ALIAS" && ! -f "$_ALIAS" ]] && error_arrow "\`{$_ALIAS}\` - source not exist, try \`as {file|folder}\` from current directory" && return
+  ln -s "$_ALIAS" "$_SOURCE"
+  source_reload_zsh
+}
+
+#   ----------------------------------
+#       BREW functions
+#   ----------------------------------
+
+# Brew services action type
+function brew_services_action() {
+  success "Starting brew services action"
+  case $1 in
+  start | restart | stop)
+    case $2 in
+    dnsmasq | nginx | php)
+      success_arrow "Sudo $1 service - $2"
+      zsudo brew services "$@"
+      ;;
+    "" | --all)
+      case $1 in
+      start | restart)
+        success_arrow "Sudo $1 service - all"
+        zsudo brew services "$1" dnsmasq
+        zsudo brew services "$1" nginx
+        zsudo brew services "$1" php
+        success_arrow "User $1 service - all"
+        brew services "$1" mysql
+        brew services "$1" mailhog
+        ;;
+      stop)
+        success_arrow "Sudo $1 service - all"
+        zsudo brew services stop --all
+        success_arrow "User $1 service - all"
+        brew services stop --all
+        ;;
+      esac
+      ;;
+    *)
+      success_arrow "User $1 service - $2"
+      brew services "$@"
+      ;;
+    esac
+    ;;
+  *)
+    brew services "$@"
+    ;;
+  esac
+  brew_services_list
+}
+
+# Brew services list services
+function brew_services_list() {
+  success "Starting brew services list action"
+  zsudo brew services list
+  brew services list
+}
+
+#   ----------------------------------
+#       FINDER functions
+#   ----------------------------------
+
+# Finder Find a File with a @NAME
+function finder_find_file_name() {
+  find . -type f -iname '*'"$1"'*' -ls
+}
+
+# Finder Remove all .DS_Store
+function finder_show_all_files() {
+  defaults write com.apple.Finder AppleShowAllFiles "$1"
+  killall Finder
+}
+
+#   ----------------------------------
+#       UPDATE functions
+#   ----------------------------------
+
+# Update all global (Applications, Brew, Composer, Npm)
+function update_global() {
+  update_brew
+  update_composer
+  update_npm
+  update_dock
+}
+
+function update_brew() {
+  success "Starting brew upgrade"
+  brew upgrade && brew upgrade --cask --greedy && brew cleanup
+}
+
+function update_composer() {
+  success "Starting composer upgrade"
+  composer global update
+}
+
+function update_npm() {
+  success "Starting npm upgrade"
+  ncu -g
+}
+
+# Update Dock (Used to restore all dock applications if cask update removed it)
+function update_dock() {
+  success "Updating all dock apps & folders"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/dock/setup.sh)"
+}
+
+# Update .Zprofile
+function update_zprofile() {
+  success "Updating zprofile"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
+  source_reload_zsh
+}
+
+# Update Git project
+function update_git() {
+  git pull --all
+}

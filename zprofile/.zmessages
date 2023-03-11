@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#   ----------------------------------
+#       GLOBAL messages functions
+#   ----------------------------------
+
+function abort() {
+  printf "%s\n" "$@"
+  exit 1
+}
+
+function alert() {
+  echo "$(tput setaf 3)$(tput bold)==> ${1}$(tput sgr0)"
+}
+
+function alert_arrow() {
+  echo "$(tput setaf 3)==> $(tput sgr0)$(tput bold)${1}$(tput sgr0)"
+}
+
+function error() {
+  echo "$(tput setaf 1)$(tput bold)==> ${1}$(tput sgr0)"
+}
+
+function error_arrow() {
+  echo "$(tput setaf 1)==> $(tput sgr0)$(tput bold)${1}$(tput sgr0)"
+}
+
+function success() {
+  echo "$(tput setaf 2)$(tput bold)==> ${1}$(tput sgr0)"
+}
+
+function success_arrow() {
+  echo "$(tput setaf 2)==> $(tput sgr0)$(tput bold)${1}$(tput sgr0)"
+}
+
+function step() {
+  success "${1} (${2}/${3})"
+}

@@ -1,0 +1,7 @@
+# IDE's
+.husky
+.idea/*
+!.idea/dictionaries
+
+# OS
+.DS_Store

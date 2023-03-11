@@ -1,0 +1,184 @@
+#!/bin/bash
+set +u
+
+# Source .zmessages
+ZMESSAGES_LINK="https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/.zmessages"
+source /dev/stdin <<< "$(curl --insecure --silent $ZMESSAGES_LINK)"
+success_arrow "Loading source .zmessages"
+
+# Setup list global variables
+SETUP=(
+  'setup_ssh'
+  'setup_brew'
+  'setup_brew_apps'
+  'setup_nodejs_env'
+  'setup_php_env'
+  'setup_iterm_terminal'
+  'setup_dock_apps'
+  'setup_switcher'
+)
+
+# Setup ssh
+# Don't forget to add it to your repositories
+function setup_ssh() {
+  step "Setting ssh keys!" "${1}" "${2}"
+  ssh-keygen -f "${HOME}/.ssh/id_rsa" -t rsa -b 2048 -C "homcenco@gmail.com"
+}
+
+# Setup brew
+function setup_brew() {
+  step "Setting brew!"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+}
+
+# Setup brew applications
+function setup_brew_apps() {
+  step "Setting brew applications!" "${1}" "${2}"
+  # Browser apps
+  brew install --cask google-chrome microsoft-edge yandex firefox opera
+  # File apps
+  brew install --cask transmit folx
+  # Background apps
+  brew install --cask contexts macs-fan-control authy
+  # Chatting apps
+  brew install --cask telegram discord
+  # Development apps
+  brew install --cask docker phpstorm pycharm intellij-idea datagrip visual-studio-code figma postman
+  brew install --cask hpedrorodrigues/tools/dockutil
+}
+
+# Setup nodejs environment
+function setup_nodejs_env() {
+  step "Setting Nodejs environment!" "${1}" "${2}"
+  alert "Installing node & npm services:"
+
+  brew install node npm
+  alert "Installing npm tools global packages:"
+  npm i -g autocannon npm-check-updates
+
+  alert "Installing npm cli global packages:"
+  npm i -g @adonisjs/cli
+
+  alert "Setup commitlint for any git commit:"
+  npm i -g @commitlint/{cli,config-conventional}
+  echo "module.exports = {extends: ['/usr/local/lib/node_modules/@commitlint/config-conventional']}" > ~/.commitlintrc.js
+  [ ! -d "${HOME}/.git/hooks" ] && mkdir -pv "${HOME}/.git/hooks"
+  echo '#!/usr/bin/env sh' > "${HOME}/.git/hooks/commit-msg"
+  echo 'npx --no -- commitlint --edit ${1}' >> "${HOME}/.git/hooks/commit-msg"
+  chmod a+x "${HOME}/.git/hooks/commit-msg"
+  git config --global core.hooksPath "${HOME}/.git/hooks"
+}
+
+# Setup php environment
+function setup_php_env() {
+  step "Setting php environment!" "${1}" "${2}"
+  alert "Installing php and apps:"
+  brew install php wrk mailhog phpmyadmin
+  alert "Installing php services:"
+  brew install composer dnsmasq nginx mysql
+  alert "Installing ngrok tunnel:"
+  brew install ngrok/ngrok/ngrok
+}
+
+# Setup dock applications
+function setup_dock_apps() {
+  step "Setting dock applications!" "${1}" "${2}"
+  # Reinstall all dock app and folders icons
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/dock/setup.sh)"
+}
+
+# Setup iterm terminal
+function setup_iterm_terminal() {
+  step "Setting iterm terminal!" "${1}" "${2}"
+  brew install iterm2 zsh
+  brew install zsh-completions zsh-autosuggestions romkatv/powerlevel10k/powerlevel10k
+  echo "source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+  echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
+  # Disable .zsh_history by setting its symlink to null
+  [ -f "$HOME/.zsh_history" ] && rm -f "$HOME/.zsh_history"
+  ln -s "/dev/null" "$HOME/.zsh_history"
+  # Copy my `.zprofile` config
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
+  source "$HOME/.zprofile"
+}
+
+# Setup all switcher
+function setup_switcher() {
+  step "Setting all configs!" "${1}" "${2}"
+  local FLOW_DIR="$HOME/Library/Services"
+  local FLOW_SWITCHER_FILE="Appearance_Switcher.workflow"
+  local FLOW_LINK_DIR="https://raw.githubusercontent.com/homcenco/macos-setup/main/flows"
+  local FLOW_SWITCHER_LINK="$FLOW_LINK_DIR/Appearance_Switcher.workflow.zip"
+  [ ! -d "${FLOW_DIR}" ] && mkdir -p "${FLOW_DIR}"
+  [ ! -d "${FLOW_DIR}/${FLOW_SWITCHER_FILE}" ] && curl -o "${FLOW_DIR}/${FLOW_SWITCHER_FILE}.zip" "${FLOW_SWITCHER_LINK}"
+  [ -f "${FLOW_DIR}/${FLOW_SWITCHER_FILE}.zip" ] && unzip "${FLOW_DIR}/${FLOW_SWITCHER_FILE}.zip" -d "${FLOW_DIR}" && rm -f "${FLOW_DIR}/${FLOW_SWITCHER_FILE}.zip" && rm -fr "${FLOW_DIR}__MACOSX"
+}
+
+# Setup list all
+function setup_list() {
+  success "Available setup step names:"
+  for value in "${SETUP[@]}"; do
+    echo "    $value"
+  done
+}
+
+# Start step setup from SETUP list
+function setup_step() {
+  [[ " ${SETUP[*]} " =~ ${1} ]] && eval "$1 1 1" || error "Error: step '$1' not found!"
+}
+
+# Start setup all
+function setup_all() {
+  local c="1"
+  for value in "${SETUP[@]}"; do
+    eval "$value $((c++)) ${#SETUP[@]}"
+  done
+  open -a "iTerm"
+}
+
+# Setup help
+setup_help() {
+  echo "Example usage:"
+  echo "/bin/bash setup.sh -s setup_ssh"
+  echo "Options:"
+  echo "-h     Help info"
+  echo "-s     Step NAME setup from list"
+  echo "-l     List all setup steps"
+  echo
+}
+
+#########
+# SETUP #
+#########
+
+# Check if bash is available
+if [ -z "${BASH_VERSION:-}" ]; then
+  error "Bash is required to interpret this script."
+fi
+
+# If option is set run commands
+while getopts "hs:l" option; do
+  case $option in
+  h) # Setup help
+    setup_help
+    exit
+    ;;
+  s) # Setup step only
+    STEP1="$OPTARG"
+    setup_step "$STEP1"
+    exit
+    ;;
+  l) # List all setup functions
+    setup_list
+    exit
+    ;;
+  \?) # Invalid option
+    error "Error: Invalid option"
+    setup_help
+    exit
+    ;;
+  esac
+done
+
+# If no options set run setup_all
+[ $OPTIND -eq 1 ] && setup_all
