@@ -35,7 +35,7 @@ function setup_brew() {
 function setup_brew_apps() {
   step "Setting brew applications!" "${1}" "${2}"
   # Browser apps
-  brew install --cask google-chrome microsoft-edge yandex firefox opera
+  brew install --cask google-chrome microsoft-edge yandex firefox opera surfshark
   # File apps
   brew install --cask transmit folx
   # Background apps
