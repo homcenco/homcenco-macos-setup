@@ -10,7 +10,7 @@ APPS=("Launchpad"
       "Adobe Illustrator 2022/Adobe Illustrator" "Adobe Photoshop 2023/Adobe Photoshop 2023"
       "Postman" "Transmit" "Visual Studio Code" "Docker" "PhpStorm" "IntelliJ IDEA" "PyCharm" "DataGrip"
       "iTerm" "Activity Monitor" "Screenshot" "Calculator" "System Settings"
-      "Music"
+      "Music" "Reminders"
 )
 # FOLDERS array by its path name and view (ex: "$HOME/Documents" "Documents" "list")
 FOLDERS=("('$HOME/Documents' 'Documents' 'list')"
