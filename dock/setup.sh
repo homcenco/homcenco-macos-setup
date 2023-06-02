@@ -4,13 +4,12 @@ set -u
 # Settings variables
 # APPS array by its name (ex: "App Store".app)
 APPS=("Launchpad"
-      "Google Chrome" "Safari" "Microsoft Edge" "Yandex" "Opera" "Firefox" "Surfshark"
+      "Google Chrome" "Safari" "Microsoft Edge" "Yandex" "Opera" "Firefox"
       "Podcasts" "Discord" "Mail" "Telegram"
       "ColorSnapper2" "Figma" "Freeform"
       "Adobe Illustrator 2022/Adobe Illustrator" "Adobe Photoshop 2023/Adobe Photoshop 2023"
       "Postman" "Transmit" "Visual Studio Code" "Docker" "PhpStorm" "IntelliJ IDEA" "PyCharm" "DataGrip"
-      "iTerm" "Activity Monitor" "Screenshot" "Calculator" "System Settings"
-      "Music" "Reminders"
+      "iTerm" "Activity Monitor" "Screenshot"  "Reminders" "Calculator" "System Settings"
 )
 # FOLDERS array by its path name and view (ex: "$HOME/Documents" "Documents" "list")
 FOLDERS=("('$HOME/Documents' 'Documents' 'list')"
