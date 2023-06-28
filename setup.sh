@@ -75,9 +75,24 @@ function setup_php_env() {
   alert "Installing php and apps:"
   brew install php wrk mailhog phpmyadmin
   alert "Installing php services:"
-  brew install composer dnsmasq nginx mysql
+  brew install composer dnsmasq nginx mysql wget
   alert "Installing ngrok tunnel:"
   brew install ngrok/ngrok/ngrok
+  alert "Rebuild composer non-political:"
+  local COMPOSER_TEMP = "~/composer-build"
+  [ -f "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
+  git clone https://github.com/composer/composer.git --branch 2.5.8  "${COMPOSER_TEMP}" && \
+      composer install -o -d "${COMPOSER_TEMP}" && \
+      wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
+      cd "${COMPOSER_TEMP}" && patch -p1 < composer.patch && \
+      php -d phar.readonly=0 bin/compile && \
+      rm /usr/local/bin/composer && \
+      php composer.phar install && \
+      php composer.phar update && \
+      mv "${COMPOSER_TEMP}/composer.phar" /usr/local/bin/composer && \
+      rm -rf "${COMPOSER_TEMP}"  && \
+      chmod +x /usr/local/bin/composer && \
+      cd ~
 }
 
 # Setup dock applications
