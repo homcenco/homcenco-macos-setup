@@ -47,7 +47,6 @@ Run this command in your terminal:
 | `gcc`   | Git Clean and reset Cpabox project                    |
 | `gd`    | Git Diff show all changed files staged and not staged |
 | `gp`    | Git Pull --all                                        |
-| `gr`    | Git Reset --hard                                      |
 
 ### Update
 | Command | Description                                                                   |

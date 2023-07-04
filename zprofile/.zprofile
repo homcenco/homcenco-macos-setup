@@ -105,9 +105,6 @@ alias gd='git diff --name-only && git diff --name-only --staged | sort | uniq'
 # Git Pull all
 alias gp='git pull --all'
 
-# Git Reset hard
-alias gr='git reset --hard'
-
 #   ----------------------------------
 #       UPDATE aliases configuration
 #   ----------------------------------
