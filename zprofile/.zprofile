@@ -96,8 +96,8 @@ alias fsi='sudo mdutil -i on /'
 #       GIT aliases configuration
 #   ----------------------------------
 
-# Git Clean all files not in git project
-alias gc='git clean -fxd'
+# Git Clean and reset Cpabox project
+alias gcc='git clean -dfx -e ".env" -e "/.idea" -e "/app/Config/domains_settings/*" -e "/files/**" -e "/public/files/**" && git reset --hard HEAD~'
 
 # Git Diff show all changed files staged and not staged
 alias gd='git diff --name-only && git diff --name-only --staged | sort | uniq'
