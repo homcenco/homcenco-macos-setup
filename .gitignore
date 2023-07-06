@@ -1,6 +1,5 @@
 # IDE's
-.idea/*
-!.idea/dictionaries
+.idea
 
 # OS
 .DS_Store

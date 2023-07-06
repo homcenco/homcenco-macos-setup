@@ -64,9 +64,12 @@ function setup_nodejs_env() {
   echo "module.exports = {extends: ['/usr/local/lib/node_modules/@commitlint/config-conventional']}" > "${HOME}/.commitlintrc.js"
   [ ! -d "${HOME}/.git/hooks" ] && mkdir -pv "${HOME}/.git/hooks"
   echo '#!/usr/bin/env sh' > "${HOME}/.git/hooks/commit-msg"
-  echo 'npx --no -- commitlint --edit ${1}' >> "${HOME}/.git/hooks/commit-msg"
+  echo "npx --no -- commitlint --edit ${1}" >> "${HOME}/.git/hooks/commit-msg"
   chmod a+x "${HOME}/.git/hooks/commit-msg"
   git config --global core.hooksPath "${HOME}/.git/hooks"
+
+  alert "Setup git-flow:"
+  brew install git-flow
 }
 
 # Setup php environment
@@ -79,7 +82,7 @@ function setup_php_env() {
   alert "Installing ngrok tunnel:"
   brew install ngrok/ngrok/ngrok
   alert "Rebuild composer non-political:"
-  local COMPOSER_TEMP = "~/composer-build"
+  local COMPOSER_TEMP="${HOME}/composer-build"
   [ -f "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
   git clone https://github.com/composer/composer.git --branch 2.5.8  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
@@ -92,7 +95,7 @@ function setup_php_env() {
       mv "${COMPOSER_TEMP}/composer.phar" /usr/local/bin/composer && \
       rm -rf "${COMPOSER_TEMP}"  && \
       chmod +x /usr/local/bin/composer && \
-      cd ~
+      cd "${HOME}" || exit
 }
 
 # Setup dock applications
@@ -139,7 +142,10 @@ function setup_list() {
 
 # Start step setup from SETUP list
 function setup_step() {
-  [[ " ${SETUP[*]} " =~ ${1} ]] && eval "$1 1 1" || error "Error: step '$1' not found!"
+  if [[ " ${SETUP[*]} " =~ ${1} ]];
+   then eval "$1 1 1"
+   else error "Error: step '$1' not found!"
+   fi;
 }
 
 # Start setup all
