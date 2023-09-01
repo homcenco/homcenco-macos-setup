@@ -43,7 +43,7 @@ function setup_brew_apps() {
   # Chatting apps
   brew install --cask telegram discord
   # Development apps
-  brew install --cask docker phpstorm pycharm intellij-idea datagrip visual-studio-code figma postman
+  brew install --cask docker phpstorm pycharm intellij-idea  visual-studio-code figma postman
   brew install --cask hpedrorodrigues/tools/dockutil
 }
 
@@ -84,7 +84,7 @@ function setup_php_env() {
   alert "Rebuild composer non-political:"
   local COMPOSER_TEMP="${HOME}/composer-build"
   [ -f "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
-  git clone https://github.com/composer/composer.git --branch 2.5.8  "${COMPOSER_TEMP}" && \
+  git clone https://github.com/composer/composer.git --branch 2.6.1  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
       wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
       cd "${COMPOSER_TEMP}" && patch -p1 < composer.patch && \
