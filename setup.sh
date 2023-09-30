@@ -29,6 +29,7 @@ function setup_ssh() {
 function setup_brew() {
   step "Setting brew!"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  brew analytics off
 }
 
 # Setup brew applications
@@ -84,7 +85,7 @@ function setup_php_env() {
   alert "Rebuild composer non-political:"
   local COMPOSER_TEMP="${HOME}/composer-build"
   [ -f "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
-  git clone https://github.com/composer/composer.git --branch 2.6.3  "${COMPOSER_TEMP}" && \
+  git clone https://github.com/composer/composer.git --branch 2.6.4  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
       wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
       cd "${COMPOSER_TEMP}" && patch -p1 < composer.patch && \
@@ -101,7 +102,10 @@ function setup_php_env() {
 # Setup dock applications
 function setup_dock_apps() {
   step "Setting dock applications!" "${1}" "${2}"
-  # Reinstall all dock app and folders icons
+  alert "Create folders if not exist:"
+  [ ! -d "$HOME/Web" ] && mkdir "$HOME/Web"
+  [ ! -d "$HOME/Work" ] && mkdir "$HOME/Work"
+  alert "Reinstall all dock app and folders icons:"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/dock/setup.sh)"
 }
 
@@ -109,9 +113,15 @@ function setup_dock_apps() {
 function setup_iterm_terminal() {
   step "Setting iterm terminal!" "${1}" "${2}"
   brew install iterm2 zsh
-  brew install zsh-completions zsh-autosuggestions romkatv/powerlevel10k/powerlevel10k
-  echo "source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-  echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
+  brew install zsh-completions zsh-autosuggestions romkatv/powerlevel10k
+  echo "if type brew &>/dev/null; then
+            FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+            autoload -Uz compinit
+            compinit
+        fi" >>~/.zshrc
+  echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+  echo "source $(brew --prefix)/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
   # Disable .zsh_history by setting its symlink to null
   [ -f "$HOME/.zsh_history" ] && rm -f "$HOME/.zsh_history"
   ln -s "/dev/null" "$HOME/.zsh_history"
