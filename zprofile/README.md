@@ -7,13 +7,6 @@ Run this command in your terminal:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
 ```
 
-### Navigate
-| Command    | Description                         |
-|------------|-------------------------------------|
-| `. [PATH]` | Navigate to directory or PATH       |
-| `..`       | Navigate down to previous directory |
-| `~`        | Navigate to users home directory    |
-
 ### Alias
 | Command     | Description                                  |
 |-------------|----------------------------------------------|

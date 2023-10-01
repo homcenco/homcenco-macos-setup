@@ -41,19 +41,6 @@ function zsudo() {
 }
 
 #   ----------------------------------
-#       NAVIGATE aliases configuration
-#   ----------------------------------
-
-# Navigate up to directory path
-alias .='cd $@'
-
-# Navigate down to previous directory
-alias ..='cd ..'
-
-# Navigate to directory home
-alias ~='cd $HOME'
-
-#   ----------------------------------
 #       Alias symlink configuration
 #   ----------------------------------
 

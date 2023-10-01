@@ -51,11 +51,10 @@ function alias_symlink() {
   # shellcheck disable=SC2155
   local _ALIAS="$(pwd)/$2"
   local _ALIASES_DIR="$1"
-  local _SOURCE="$_ALIASES_DIR/$1"
   [ ! -d "$_ALIASES_DIR" ] && mkdir -p "$_ALIASES_DIR"
   [ -z "$1" ] && error_arrow "\`{$1}\` - source not defined, try \`as {file|folder}\` from current directory" && return
   [[ ! -d "$_ALIAS" && ! -f "$_ALIAS" ]] && error_arrow "\`{$_ALIAS}\` - source not exist, try \`as {file|folder}\` from current directory" && return
-  ln -s "$_ALIAS" "$_SOURCE"
+  ln -s "$_ALIAS" "$_ALIASES_DIR"
   source_reload_zsh
 }
 
