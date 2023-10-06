@@ -84,7 +84,7 @@ function setup_php_env() {
   brew install ngrok/ngrok/ngrok
   alert "Rebuild composer non-political:"
   local COMPOSER_TEMP="${HOME}/composer-build"
-  [ -f "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
+  [ -d "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
   git clone https://github.com/composer/composer.git --branch 2.6.5  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
       wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
