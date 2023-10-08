@@ -36,15 +36,15 @@ function setup_brew() {
 function setup_brew_apps() {
   step "Setting brew applications!" "${1}" "${2}"
   # Browser apps
-  brew install --cask google-chrome microsoft-edge yandex firefox opera surfshark
+  brew install --cask google-chrome yandex firefox opera surfshark
   # File apps
   brew install --cask transmit folx
   # Background apps
-  brew install --cask contexts macs-fan-control authy
+  brew install --cask contexts macs-fan-control
   # Chatting apps
   brew install --cask telegram discord
   # Development apps
-  brew install --cask docker phpstorm intellij-idea visual-studio-code figma postman
+  brew install --cask intellij-idea visual-studio-code figma postman
   brew install --cask hpedrorodrigues/tools/dockutil
 }
 
@@ -52,8 +52,8 @@ function setup_brew_apps() {
 function setup_nodejs_env() {
   step "Setting Nodejs environment!" "${1}" "${2}"
   alert "Installing node & npm services:"
-
   brew install node npm
+
   alert "Installing npm tools global packages:"
   npm i -g autocannon npm-check-updates
 
@@ -68,9 +68,6 @@ function setup_nodejs_env() {
   echo "npx --no -- commitlint --edit ${1}" >> "${HOME}/.git/hooks/commit-msg"
   chmod a+x "${HOME}/.git/hooks/commit-msg"
   git config --global core.hooksPath "${HOME}/.git/hooks"
-
-  alert "Setup git-flow:"
-  brew install git-flow
 }
 
 # Setup php environment
@@ -113,15 +110,17 @@ function setup_dock_apps() {
 function setup_iterm_terminal() {
   step "Setting iterm terminal!" "${1}" "${2}"
   brew install iterm2 zsh
-  brew install zsh-completions zsh-autosuggestions romkatv/powerlevel10k
+  brew install zsh-completions zsh-autosuggestions powerlevel10k
+  chmod go-w '/usr/local/share'
+  chmod -R go-w '/usr/local/share/zsh'
   echo "if type brew &>/dev/null; then
             FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
             autoload -Uz compinit
             compinit
         fi" >>~/.zshrc
-  echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-  echo "source $(brew --prefix)/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
+  echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
+  echo "source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
   # Disable .zsh_history by setting its symlink to null
   [ -f "$HOME/.zsh_history" ] && rm -f "$HOME/.zsh_history"
   ln -s "/dev/null" "$HOME/.zsh_history"
