@@ -65,7 +65,7 @@ function setup_nodejs_env() {
   echo "module.exports = {extends: ['/usr/local/lib/node_modules/@commitlint/config-conventional']}" > "${HOME}/.commitlintrc.js"
   [ ! -d "${HOME}/.git/hooks" ] && mkdir -pv "${HOME}/.git/hooks"
   echo '#!/usr/bin/env sh' > "${HOME}/.git/hooks/commit-msg"
-  echo "npx --no -- commitlint --edit ${1}" >> "${HOME}/.git/hooks/commit-msg"
+  echo "npx --no-install commitlint --edit $1" >> "${HOME}/.git/hooks/commit-msg"
   chmod a+x "${HOME}/.git/hooks/commit-msg"
   git config --global core.hooksPath "${HOME}/.git/hooks"
 }
