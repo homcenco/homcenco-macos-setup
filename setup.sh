@@ -113,6 +113,7 @@ function setup_iterm_terminal() {
   brew install zsh-completions zsh-autosuggestions powerlevel10k
   chmod go-w '/usr/local/share'
   chmod -R go-w '/usr/local/share/zsh'
+  # shellcheck disable=SC2129
   echo "if type brew &>/dev/null; then
             FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
