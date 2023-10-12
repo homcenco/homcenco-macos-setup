@@ -55,7 +55,7 @@ function setup_nodejs_env() {
   brew install node npm
 
   alert "Installing npm tools global packages:"
-  npm i -g autocannon npm-check-updates
+  npm i -g autocannon npm-check-updates eslint
 
   alert "Installing npm cli global packages:"
   npm i -g @adonisjs/cli
