@@ -44,7 +44,7 @@ function setup_brew_apps() {
   # Chatting apps
   brew install --cask telegram discord
   # Development apps
-  brew install --cask intellij-idea visual-studio-code figma postman
+  brew install --cask intellij-idea visual-studio-code figma postman bruno
   brew install --cask hpedrorodrigues/tools/dockutil
 }
 
