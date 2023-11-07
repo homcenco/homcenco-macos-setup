@@ -93,7 +93,7 @@ alias gd='git diff --name-only && git diff --name-only --staged | sort | uniq'
 alias gp='git pull --all'
 
 # Open chrome with disable-web-security
-alias go='open -n -a "Google Chrome" --args --user-data-dir="/users/x/.google" --disable-web-security'
+alias go='open -n -a "Google Chrome" --args --user-data-dir="${HOME}.google" --disable-web-security'
 
 #   ----------------------------------
 #       UPDATE aliases configuration
