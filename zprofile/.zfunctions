@@ -172,5 +172,5 @@ function update_git() {
 }
 
 function listen_ports() {
-  sudo lsof -iTCP
+  zsudo lsof -iTCP
 }
