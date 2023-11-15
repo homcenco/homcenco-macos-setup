@@ -46,6 +46,10 @@ function setup_brew_apps() {
   # Development apps
   brew install --cask intellij-idea visual-studio-code figma bruno
   brew install --cask hpedrorodrigues/tools/dockutil
+
+  # Figma disable agent
+  touch ~/Library/Application\ Support/Figma/FigmaAgent.app
+  sudo chflags -R schg ~/Library/Application\ Support/Figma/FigmaAgent.app
 }
 
 # Setup nodejs environment
