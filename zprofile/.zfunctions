@@ -170,3 +170,7 @@ function update_zprofile() {
 function update_git() {
   git pull --all
 }
+
+function listen_ports() {
+  sudo lsof -iTCP
+}
