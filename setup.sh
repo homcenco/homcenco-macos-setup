@@ -47,9 +47,14 @@ function setup_brew_apps() {
   brew install --cask intellij-idea visual-studio-code figma bruno
   brew install --cask hpedrorodrigues/tools/dockutil
 
+  # Docker
+  brew uninstall --cask docker --force
+  brew uninstall --formula docker --force
+  brew install --cask docker
+
   # Figma disable agent
-  touch ~/Library/Application\ Support/Figma/FigmaAgent.app
-  sudo chflags -R schg ~/Library/Application\ Support/Figma/FigmaAgent.app
+  touch "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
+  sudo chflags -R schg "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
 }
 
 # Setup nodejs environment
@@ -59,7 +64,7 @@ function setup_nodejs_env() {
   brew install node npm
 
   alert "Installing npm tools global packages:"
-  npm i -g autocannon npm-check-updates eslint
+  npm i -g autocannon npm-check-updates eslint yarn
 
   alert "Installing npm cli global packages:"
   npm i -g @adonisjs/cli
@@ -69,7 +74,7 @@ function setup_nodejs_env() {
   echo "module.exports = {extends: ['/usr/local/lib/node_modules/@commitlint/config-conventional']}" > "${HOME}/.commitlintrc.js"
   [ ! -d "${HOME}/.git/hooks" ] && mkdir -pv "${HOME}/.git/hooks"
   echo '#!/usr/bin/env sh' > "${HOME}/.git/hooks/commit-msg"
-  echo "npx --no-install commitlint --edit $1" >> "${HOME}/.git/hooks/commit-msg"
+  echo "npx --no-install commitlint --edit" >> "${HOME}/.git/hooks/commit-msg"
   chmod a+x "${HOME}/.git/hooks/commit-msg"
   git config --global core.hooksPath "${HOME}/.git/hooks"
 }
