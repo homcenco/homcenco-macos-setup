@@ -7,7 +7,7 @@ Run this command in your terminal:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/setup.sh)"
 ```
 ### Tested using:
-- macOS v.14
+- macOS v.14 (Sonoma)
 
 ### Options list:
 - `-h` Help info
@@ -19,10 +19,10 @@ Run this command in your terminal:
 - `setup_brew`
 - `setup_brew_apps`
 - `setup_nodejs_env`
-- `setup_php_env`
+- `setup_php_env` - not auto installed
 - `setup_iterm_terminal`
 - `setup_dock_apps`
-- `setup_swicher`
+- `setup_switcher`
 
 ### Bash step option example:
 ```shell
