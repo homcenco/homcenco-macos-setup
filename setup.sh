@@ -12,7 +12,6 @@ SETUP=(
   'setup_brew'
   'setup_brew_apps'
   'setup_nodejs_env'
-  'setup_php_env'
   'setup_iterm_terminal'
   'setup_dock_apps'
   'setup_switcher'
@@ -45,12 +44,12 @@ function setup_brew_apps() {
   brew install --cask telegram discord
   # Development apps
   brew install --cask intellij-idea visual-studio-code figma bruno
-  brew install --cask hpedrorodrigues/tools/dockutil
 
   # Docker
-  brew uninstall --cask docker --force
-  brew uninstall --formula docker --force
   brew install --cask docker
+
+  # Formulaes
+  brew install dockutil
 
   # Figma disable agent
   touch "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
