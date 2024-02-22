@@ -33,8 +33,8 @@ Run this command in your terminal:
 - [dock setup documentation](https://github.com/homcenco/macos-setup/tree/main/dock)
 - [zprofile setup documentation](https://github.com/homcenco/macos-setup/tree/main/zprofile)
 
-### Conventional Commits
-Project uses `Conventional Commits` specification for adding human and machine readable meaning to commit messages.
+### Commits specification:
+Project uses `conventional commits` specification for adding human and machine readable meaning to commit messages.
 ```
 <type>(<scope>): <short summary>
   │       │             │
@@ -44,4 +44,4 @@ Project uses `Conventional Commits` specification for adding human and machine r
   │
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```
-- [Commit specefication](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Commits specefication (v1.0.0)](https://www.conventionalcommits.org/en/v1.0.0/)
