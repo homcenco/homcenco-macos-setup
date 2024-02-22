@@ -19,7 +19,7 @@ Run this command in your terminal:
 - `setup_brew`
 - `setup_brew_apps`
 - `setup_nodejs_env`
-- `setup_php_env` - not auto installed
+- `setup_php_env` - removed from auto installation
 - `setup_iterm_terminal`
 - `setup_dock_apps`
 - `setup_switcher`
@@ -32,3 +32,16 @@ Run this command in your terminal:
 ### Sources list:
 - [dock setup documentation](https://github.com/homcenco/macos-setup/tree/main/dock)
 - [zprofile setup documentation](https://github.com/homcenco/macos-setup/tree/main/zprofile)
+
+### Conventional Commits
+Project uses `Conventional Commits` specification for adding human and machine readable meaning to commit messages.
+```
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope: dock|flows|setup|zfunction|zmessages|zprofile
+  │
+  └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
+```
+- [Commit specefication](https://www.conventionalcommits.org/en/v1.0.0/)
