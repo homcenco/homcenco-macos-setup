@@ -12,13 +12,16 @@ _ZSUDO_FILE="$HOME/.zprotected"
 #       EXPORT & SOURCE
 #   ----------------------------------
 
-# If local/sbin directory exists - add all to export
+# If /usr/local/sbin directory exists - add sbin to export
 [ -d "/usr/local/sbin" ] && export PATH="/usr/local/sbin:$PATH"
 
-# If postgresql@14/bin directory exists - add all to export
+# If /usr/local/anaconda3/bin directory exists - add bin to export
+[ -d "/usr/local/anaconda3/bin" ] && export PATH="/usr/local/anaconda3/bin:$PATH"
+
+# If /usr/local/opt/postgresql@14/bin directory exists - add bin to export
 [ -d "/usr/local/opt/postgresql@14/bin" ] && export PATH="/usr/local/opt/postgresql@14/bin:$PATH"
 
-# If composer/bin directory exists - add all to export
+# If $HOME/.composer/vendor/bin directory exists - add bin to export
 [ -d "$HOME/.composer/vendor/bin" ] && export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # If .zmessages file exists - add it to source
