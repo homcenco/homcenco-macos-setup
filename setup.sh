@@ -136,6 +136,8 @@ function setup_iterm_terminal() {
   # Copy my `.zprofile` config
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
   source "$HOME/.zprofile"
+  # Initialize conda env
+  conda init
 }
 
 # Setup all switcher
