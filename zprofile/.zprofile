@@ -24,6 +24,9 @@ _ZSUDO_FILE="$HOME/.zprotected"
 # If $HOME/.composer/vendor/bin directory exists - add bin to export
 [ -d "$HOME/.composer/vendor/bin" ] && export PATH="$PATH:$HOME/.composer/vendor/bin"
 
+# If .bash_profile file exists - add it to source
+[ -f "$HOME/.bash_profile" ] && source "$HOME"/.bash_profile
+
 # If .zmessages file exists - add it to source
 [ -f "$HOME/.zmessages" ] && source "$HOME"/.zmessages
 
