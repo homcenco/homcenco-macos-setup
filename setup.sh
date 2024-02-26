@@ -65,9 +65,6 @@ function setup_nodejs_env() {
   alert "Installing npm tools global packages:"
   npm i -g autocannon npm-check-updates eslint yarn
 
-  alert "Installing npm cli global packages:"
-  npm i -g @adonisjs/cli
-
   alert "Setup commitlint for any git commit:"
   npm i -g @commitlint/{cli,config-conventional}
   echo "module.exports = {extends: ['/usr/local/lib/node_modules/@commitlint/config-conventional']}" > "${HOME}/.commitlintrc.js"
