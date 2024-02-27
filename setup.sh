@@ -55,6 +55,10 @@ function setup_brew_apps() {
   # Figma disable agent
   touch "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
   sudo chflags -R schg "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
+
+  # Copy my `.zprofile` config
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
+  source "$HOME/.zprofile"
 }
 
 # Setup nodejs environment
@@ -145,11 +149,6 @@ function setup_iterm_terminal() {
   # Disable .zsh_history by setting its symlink to null
   [ -f "$HOME/.zsh_history" ] && rm -f "$HOME/.zsh_history"
   ln -s "/dev/null" "$HOME/.zsh_history"
-  # Copy my `.zprofile` config
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
-  source "$HOME/.zprofile"
-  # Initialize conda env
-  conda init
 }
 
 # Setup all switcher
