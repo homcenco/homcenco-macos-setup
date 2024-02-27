@@ -48,8 +48,8 @@ function setup_brew_apps() {
   # Docker
   brew install --cask docker
 
-  # Formulaes
-  brew install dockutil anaconda
+  # Formulas
+  brew install dockutil anaconda nvm
 
   # Figma disable agent
   touch "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
