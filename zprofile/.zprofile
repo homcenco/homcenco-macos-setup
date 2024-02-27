@@ -21,17 +21,17 @@ _ZSUDO_FILE="$HOME/.zprotected"
 # If $HOME/.composer/vendor/bin directory exists - add bin to export
 [ -d "$HOME/.composer/vendor/bin" ] && export PATH="$PATH:$HOME/.composer/vendor/bin"
 
-# If .bash_profile file exists - add it to source
+# If $HOME/.bash_profile file exists - add it to source
 [ -f "$HOME/.bash_profile" ] && source "$HOME"/.bash_profile
 
 # If $HOME/.nvm directory exists - add nvm to export
  export NVM_DIR="$HOME/.nvm"
 [ -d "$HOME/.nvm" ] && [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
 
-# If .zmessages file exists - add it to source
+# If $HOME/.zmessages file exists - add it to source
 [ -f "$HOME/.zmessages" ] && source "$HOME"/.zmessages
 
-# If .zfunctions file exists - add it to source
+# If $HOME/.zfunctions file exists - add it to source
 [ -f "$HOME/.zfunctions" ] && source "$HOME"/.zfunctions
 
 #   ----------------------------------
