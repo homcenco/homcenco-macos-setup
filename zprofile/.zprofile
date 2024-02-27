@@ -18,9 +18,6 @@ _ZSUDO_FILE="$HOME/.zprotected"
 # If /usr/local/anaconda3/bin directory exists - add bin to export
 [ -d "/usr/local/anaconda3/bin" ] && export PATH="/usr/local/anaconda3/bin:$PATH"
 
-# If /usr/local/opt/postgresql@14/bin directory exists - add bin to export
-[ -d "/usr/local/opt/postgresql@14/bin" ] && export PATH="/usr/local/opt/postgresql@14/bin:$PATH"
-
 # If $HOME/.composer/vendor/bin directory exists - add bin to export
 [ -d "$HOME/.composer/vendor/bin" ] && export PATH="$PATH:$HOME/.composer/vendor/bin"
 
