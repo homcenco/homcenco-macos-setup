@@ -11,6 +11,7 @@ SETUP=(
   'setup_ssh'
   'setup_brew'
   'setup_brew_apps'
+  'setup_python_env'
   'setup_nodejs_env'
   'setup_iterm_terminal'
   'setup_dock_apps'
@@ -49,7 +50,7 @@ function setup_brew_apps() {
   brew install --cask docker
 
   # Formulas
-  brew install dockutil anaconda nvm
+  brew install dockutil
 
   # Figma disable agent
   touch "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
@@ -59,8 +60,13 @@ function setup_brew_apps() {
 # Setup nodejs environment
 function setup_nodejs_env() {
   step "Setting Nodejs environment!" "${1}" "${2}"
-  alert "Installing node & npm services:"
-  brew install node npm
+  alert "Installing nvm:"
+  brew install nvm
+
+  alert "Install node & npm --lts:"
+  source "$HOME/.zprofile"
+  nvm install --lts
+  nvm use --lts
 
   alert "Installing npm tools global packages:"
   npm i -g autocannon npm-check-updates eslint yarn
@@ -73,6 +79,15 @@ function setup_nodejs_env() {
   echo "npx --no-install commitlint --edit" >> "${HOME}/.git/hooks/commit-msg"
   chmod a+x "${HOME}/.git/hooks/commit-msg"
   git config --global core.hooksPath "${HOME}/.git/hooks"
+}
+
+# Setup python environment
+function setup_python_env() {
+  step "Setting python environment!" "${1}" "${2}"
+  alert "Initialize conda env:"
+  brew install anaconda
+  source "$HOME/.zprofile"
+  conda init
 }
 
 # Setup php environment

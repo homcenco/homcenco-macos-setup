@@ -18,6 +18,7 @@ Run this command in your terminal:
 - `setup_ssh`
 - `setup_brew`
 - `setup_brew_apps`
+- `setup_python_env`
 - `setup_nodejs_env`
 - `setup_php_env` - removed from auto installation
 - `setup_iterm_terminal`
