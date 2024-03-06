@@ -141,7 +141,7 @@ function setup_iterm_terminal() {
   chmod -R go-w '/usr/local/share/zsh'
   # shellcheck disable=SC2129
   echo "if type brew &>/dev/null; then
-            FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+            FPATH=\$(brew --prefix)/share/zsh-completions:\$FPATH
 
             autoload -Uz compinit
             compinit
