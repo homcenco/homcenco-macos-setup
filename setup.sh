@@ -136,6 +136,7 @@ function setup_iterm_terminal() {
   step "Setting iterm terminal!" "${1}" "${2}"
   brew install iterm2 zsh
   brew install zsh-completions zsh-autosuggestions powerlevel10k
+  brew install romkatv/gitstatus/gitstatus
   chmod go-w '/usr/local/share'
   chmod -R go-w '/usr/local/share/zsh'
   # shellcheck disable=SC2129
@@ -150,6 +151,7 @@ function setup_iterm_terminal() {
   # Disable .zsh_history by setting its symlink to null
   [ -f "$HOME/.zsh_history" ] && rm -f "$HOME/.zsh_history"
   ln -s "/dev/null" "$HOME/.zsh_history"
+  source "$HOME/.zprofile"
 }
 
 # Setup all switcher
