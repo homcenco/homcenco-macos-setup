@@ -27,9 +27,6 @@ _ZSUDO_FILE="$HOME/.zprotected"
 # Add NVM_DIR variable and nvm command to export
 export NVM_DIR="$HOME/.nvm" && [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
 
-# If gitstatus.prompt.zsh exists - add to export
-[ -f "$(brew --prefix)/opt/gitstatus/gitstatus.prompt.zsh" ] && source "$(brew --prefix)/opt/gitstatus/gitstatus.prompt.zsh"
-
 # If $HOME/.zmessages file exists - add it to source
 [ -f "$HOME/.zmessages" ] && source "$HOME"/.zmessages
 
