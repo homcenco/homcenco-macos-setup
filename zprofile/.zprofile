@@ -37,7 +37,7 @@ export NVM_DIR="$HOME/.nvm" && [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/lo
 #       REWRITES
 #   ----------------------------------
 
-alias ncu='ncu -x -u -i $@'
+alias ncu='ncu -x -u -i --format group $@'
 alias rm='rm -i $@'
 alias save='source_reload_zsh'
 
