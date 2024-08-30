@@ -74,7 +74,7 @@ function setup_nodejs_env() {
 
   alert "Installing npm tools global packages:"
   source "$HOME/.zprofile"
-  npm i -g autocannon npm-check-updates eslint yarn npm@latest nx
+  npm i -g autocannon npm-check-updates eslint yarn npm@latest
 
   alert "Setup commitlint for any git commit:"
   npm i -g @commitlint/{cli,config-conventional}
