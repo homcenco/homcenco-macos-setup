@@ -7,7 +7,7 @@ APPS=("Launchpad"
       "Google Chrome" "Safari" "Yandex" "Opera" "Firefox" "Surfshark"
       "Discord" "Mail" "Telegram"
       "Figma" "Freeform"
-      "Bruno" "Transmit" "Visual Studio Code" "IntelliJ IDEA" "Docker" "GitKraken"
+      "Bruno" "Transmit" "Visual Studio Code" "IntelliJ IDEA" "Docker"
       "iTerm" "Activity Monitor" "Screenshot"  "Reminders" "Calculator" "System Settings"
 )
 # FOLDERS array by its path name and view (ex: "$HOME/Documents" "Documents" "list")

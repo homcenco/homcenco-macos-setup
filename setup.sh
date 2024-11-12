@@ -11,7 +11,6 @@ SETUP=(
   'setup_ssh'
   'setup_brew'
   'setup_brew_apps'
-  'setup_python_env'
   'setup_nodejs_env'
   'setup_iterm_terminal'
   'setup_dock_apps'
@@ -44,7 +43,7 @@ function setup_brew_apps() {
   # Chatting apps
   brew install --cask telegram discord
   # Development apps
-  brew install --cask intellij-idea visual-studio-code figma bruno gitkraken
+  brew install --cask intellij-idea visual-studio-code figma bruno
 
   # Docker
   brew install --cask docker
@@ -53,6 +52,7 @@ function setup_brew_apps() {
   brew install dockutil
 
   # Figma disable agent
+  rm -fr "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
   touch "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
   sudo chflags -R schg "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
 
@@ -86,15 +86,6 @@ function setup_nodejs_env() {
   git config --global core.hooksPath "${HOME}/.git/hooks"
 }
 
-# Setup python environment
-function setup_python_env() {
-  step "Setting python environment!" "${1}" "${2}"
-  alert "Initialize conda env:"
-  brew install anaconda
-  source "$HOME/.zprofile"
-  conda init
-}
-
 # Setup php environment
 function setup_php_env() {
   step "Setting php environment!" "${1}" "${2}"
@@ -107,7 +98,7 @@ function setup_php_env() {
   alert "Rebuild composer non-political:"
   local COMPOSER_TEMP="${HOME}/composer-build"
   [ -d "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
-  git clone https://github.com/composer/composer.git --branch 2.7.1  "${COMPOSER_TEMP}" && \
+  git clone https://github.com/composer/composer.git --branch 2.8.2  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
       wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
       cd "${COMPOSER_TEMP}" && patch -p1 < composer.patch && \
