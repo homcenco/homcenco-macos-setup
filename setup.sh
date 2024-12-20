@@ -69,8 +69,9 @@ function setup_nodejs_env() {
 
   alert "Install node & npm --lts:"
   source "$HOME/.zprofile"
-  nvm install --lts
-  nvm use --lts
+  nvm install 18
+  nvm alias default 18
+  nvm use default
 
   alert "Installing npm tools global packages:"
   source "$HOME/.zprofile"
@@ -98,7 +99,7 @@ function setup_php_env() {
   alert "Rebuild composer non-political:"
   local COMPOSER_TEMP="${HOME}/composer-build"
   [ -d "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
-  git clone https://github.com/composer/composer.git --branch 2.8.2  "${COMPOSER_TEMP}" && \
+  git clone https://github.com/composer/composer.git --branch 2.8.4  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
       wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
       cd "${COMPOSER_TEMP}" && patch -p1 < composer.patch && \
