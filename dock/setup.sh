@@ -8,7 +8,7 @@ APPS=("Launchpad"
       "Discord" "Mail" "Telegram"
       "Figma" "Freeform"
       "Bruno" "Transmit" "Visual Studio Code" "IntelliJ IDEA" "Docker"
-      "iTerm" "Activity Monitor" "Screenshot"  "Reminders" "Calculator" "System Settings"
+      "Termius" "iTerm" "Activity Monitor" "Screenshot"  "Reminders" "Calculator" "System Settings"
 )
 # FOLDERS array by its path name and view (ex: "$HOME/Documents" "Documents" "list")
 FOLDERS=("('$HOME/Documents' 'Documents' 'list')"

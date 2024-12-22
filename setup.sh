@@ -43,7 +43,7 @@ function setup_brew_apps() {
   # Chatting apps
   brew install --cask telegram discord
   # Development apps
-  brew install --cask intellij-idea visual-studio-code figma bruno
+  brew install --cask intellij-idea visual-studio-code figma bruno termius
 
   # Docker
   brew install --cask docker
