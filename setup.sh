@@ -67,11 +67,14 @@ function setup_nodejs_env() {
   alert "Installing nvm:"
   brew install nvm
 
-  alert "Install node & npm --lts:"
+  alert "Install node & npm 20:"
   source "$HOME/.zprofile"
-  nvm install 18
-  nvm alias default 18
+  nvm install 20
+  nvm alias default 20
   nvm use default
+
+  alert "Install bun:"
+  brew install oven-sh/bun/bun
 
   alert "Installing npm tools global packages:"
   source "$HOME/.zprofile"
