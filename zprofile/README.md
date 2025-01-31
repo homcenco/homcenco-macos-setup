@@ -8,9 +8,9 @@ Run this command in your terminal:
 ```
 
 ### Alias
-| Command     | Description                                  |
-|-------------|----------------------------------------------|
-| `aa`        | Automator change appearance dark/light       |
+| Command    | Description                                  |
+|------------|----------------------------------------------|
+| `a`        | Automator change appearance dark/light       |
 | `as [FILE]` | Alias bash FILE as symlink to sources folder |
 
 ### Brew

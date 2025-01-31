@@ -50,7 +50,7 @@ function zsudo() {
 #       Alias symlink configuration
 #   ----------------------------------
 
-alias aa='automator_appearance'
+alias a='automator_appearance'
 alias as='alias_symlink $_ALIASES_DIR $1'
 
 #   ----------------------------------
