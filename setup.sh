@@ -2,7 +2,7 @@
 set +u
 
 # Source .zmessages
-ZMESSAGES_LINK="https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/.zmessages"
+ZMESSAGES_LINK="https://raw.githubusercontent.com/homcenco/setup/main/zprofile/.zmessages"
 source /dev/stdin <<< "$(curl --insecure --silent $ZMESSAGES_LINK)"
 success_arrow "Loading source .zmessages"
 
@@ -57,7 +57,7 @@ function setup_brew_apps() {
   sudo chflags -R schg "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
 
   # Copy my `.zprofile` config
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/zprofile/setup.sh)"
   source "$HOME/.zprofile"
 }
 
@@ -123,7 +123,7 @@ function setup_dock_apps() {
   [ ! -d "$HOME/Web" ] && mkdir "$HOME/Web"
   [ ! -d "$HOME/Work" ] && mkdir "$HOME/Work"
   alert "Reinstall all dock app and folders icons:"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/dock/setup.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/dock/setup.sh)"
 }
 
 # Setup iterm terminal
@@ -154,7 +154,7 @@ function setup_switcher() {
   step "Setting all configs!" "${1}" "${2}"
   local FLOW_DIR="$HOME/Library/Services"
   local FLOW_SWITCHER_FILE="Appearance_Switcher.workflow"
-  local FLOW_LINK_DIR="https://raw.githubusercontent.com/homcenco/macos-setup/main/flows"
+  local FLOW_LINK_DIR="https://raw.githubusercontent.com/homcenco/setup/main/flows"
   local FLOW_SWITCHER_LINK="$FLOW_LINK_DIR/Appearance_Switcher.workflow.zip"
   [ ! -d "${FLOW_DIR}" ] && mkdir -p "${FLOW_DIR}"
   [ ! -d "${FLOW_DIR}/${FLOW_SWITCHER_FILE}" ] && curl -o "${FLOW_DIR}/${FLOW_SWITCHER_FILE}.zip" "${FLOW_SWITCHER_LINK}"

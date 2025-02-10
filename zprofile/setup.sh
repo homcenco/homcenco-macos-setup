@@ -1,7 +1,7 @@
 #!/bin/bash
 set -u
 
-ZPROFILE_LINK_PATH="https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile"
+ZPROFILE_LINK_PATH="https://raw.githubusercontent.com/homcenco/setup/main/zprofile"
 
 # Global variables
 ZPROFILE_FILE="$HOME/.zprofile"

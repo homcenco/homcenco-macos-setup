@@ -4,7 +4,7 @@ This sets the environment for interactive shells. It's typically a place where y
 ## Install .zprofile
 Run this command in your terminal:
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/zprofile/setup.sh)"
 ```
 
 ### Alias

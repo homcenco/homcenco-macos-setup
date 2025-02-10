@@ -4,7 +4,7 @@ Bash script used to set up macOS (applications, configurations, environment) for
 ### Start setup
 Run this command in your terminal:
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/setup.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/setup.sh)"
 ```
 ### Tested using:
 - macOS v.14 (Sonoma)
@@ -27,12 +27,12 @@ Run this command in your terminal:
 
 ### Bash step option example:
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/setup.sh)" -o "-s setup_ssh"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/setup.sh)" -o "-s setup_ssh"
 ```
 
 ### Sources list:
-- [dock setup documentation](https://github.com/homcenco/macos-setup/tree/main/dock)
-- [zprofile setup documentation](https://github.com/homcenco/macos-setup/tree/main/zprofile)
+- [dock setup documentation](https://github.com/homcenco/setup/tree/main/dock)
+- [zprofile setup documentation](https://github.com/homcenco/setup/tree/main/zprofile)
 
 ### Commits specification:
 Project uses `conventional commits` specification for adding human and machine readable meaning to commit messages.

@@ -156,13 +156,13 @@ function update_npm() {
 # Update Dock (Used to restore all dock applications if cask update removed it)
 function update_dock() {
   success "Updating all dock apps & folders"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/dock/setup.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/dock/setup.sh)"
 }
 
 # Update .Zprofile
 function update_zprofile() {
   success "Updating zprofile"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/zprofile/setup.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/zprofile/setup.sh)"
   source_reload_zsh
 }
 

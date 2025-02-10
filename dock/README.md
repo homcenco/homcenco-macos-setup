@@ -5,5 +5,5 @@ Mostly useful in case when setting up fresh macOS or updating brew casks (brew c
 ## Start reinstall
 Run this command in your terminal:
 ```shell
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/macos-setup/main/dock/setup.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/dock/setup.sh)"
 ```
