@@ -7,7 +7,7 @@ Run this command in your terminal:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/homcenco/setup/main/setup.sh)"
 ```
 ### Tested using:
-- macOS v.14 (Sonoma)
+- macOS v.15 (Sequoia)
 
 ### Options list:
 - `-h` Help info
