@@ -39,7 +39,7 @@ function setup_brew_apps() {
   # File apps
   brew install --cask transmit folx
   # Background apps
-  brew install --cask contexts macs-fan-control
+  brew install --cask contexts macs-fan-control rectangle-pro
   # Chatting apps
   brew install --cask telegram discord
   # Development apps
