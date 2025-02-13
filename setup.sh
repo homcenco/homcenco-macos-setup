@@ -102,7 +102,7 @@ function setup_php_env() {
   alert "Rebuild composer non-political:"
   local COMPOSER_TEMP="${HOME}/composer-build"
   [ -d "${COMPOSER_TEMP}" ] && rm -rf "${COMPOSER_TEMP}"
-  git clone https://github.com/composer/composer.git --branch 2.8.4  "${COMPOSER_TEMP}" && \
+  git clone https://github.com/composer/composer.git --branch 2.8.5  "${COMPOSER_TEMP}" && \
       composer install -o -d "${COMPOSER_TEMP}" && \
       wget https://raw.githubusercontent.com/politsin/snipets/master/patch/composer.patch -q -O "${COMPOSER_TEMP}/composer.patch"  && \
       cd "${COMPOSER_TEMP}" && patch -p1 < composer.patch && \
