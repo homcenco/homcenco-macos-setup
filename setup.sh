@@ -49,7 +49,7 @@ function setup_brew_apps() {
   brew install --cask docker
 
   # Formulas
-  brew install dockutil git-gui
+  brew install dockutil git-gui go
 
   # Figma disable agent
   rm -fr "${HOME}/Library/Application Support/Figma/FigmaAgent.app"
