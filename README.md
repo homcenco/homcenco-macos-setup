@@ -41,7 +41,7 @@ Project uses `conventional commits` specification for adding human and machine r
   │       │             │
   │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
   │       │
-  │       └─⫸ Commit Scope: dock|flows|setup|zfunction|zmessages|zprofile
+  │       └─⫸ Commit Scope: dock|flows|setup|zfunctions|zmessages|zprofile
   │
   └─⫸ Commit Type: build|ci|docs|feat|fix|perf|refactor|test
 ```

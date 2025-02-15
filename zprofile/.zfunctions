@@ -126,7 +126,7 @@ function finder_show_all_files() {
 # Update all global (Applications, Brew, Composer, Npm)
 function update_global() {
   update_brew
-  update_composer
+  #update_composer
   update_npm
   update_dock
 }
