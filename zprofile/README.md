@@ -57,4 +57,3 @@ Run this command in your terminal:
 | Command           | Description                             |
 |-------------------|-----------------------------------------|
 | `save`            | Save changes to .zprofile or it sources |
-| `zsudo [COMMAND]` | Sudo passwordless a command             |

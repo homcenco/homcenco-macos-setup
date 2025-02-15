@@ -6,7 +6,6 @@
 #   ----------------------------------
 
 _ALIASES_DIR="$HOME/.config/aliases"
-_ZSUDO_FILE="$HOME/.zprotected"
 
 #   ----------------------------------
 #       EXPORT & SOURCE
@@ -32,6 +31,9 @@ export NVM_DIR="$HOME/.nvm" && [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/lo
 
 # If $HOME/.zfunctions file exists - add it to source
 [ -f "$HOME/.zfunctions" ] && source "$HOME"/.zfunctions
+
+# Auto suggestions
+eval $(/usr/local/bin/brew shellenv)
 
 #   ----------------------------------
 #       REWRITES
@@ -121,6 +123,3 @@ alias ug='update_git'
 
 # Source symlinks from _ALIASES_DIR
 source_dir_symlinks "$_ALIASES_DIR"
-
-# Source zsudo passwordless file
-source_zsudo_passwordless "$_ZSUDO_FILE"

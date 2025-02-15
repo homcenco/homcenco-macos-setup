@@ -17,13 +17,6 @@ function source_dir_symlinks() {
   fi
 }
 
-function source_zsudo_passwordless() {
-  local _FILE="$1"
-  [ ! -f "$_FILE" ] && echo '_ZSUDO="    "' >"$_FILE"
-  # shellcheck disable=SC1090
-  source "$_FILE"
-}
-
 function source_reload_zsh() {
   source "$HOME"/.zmessages
   source "$HOME"/.zfunctions
